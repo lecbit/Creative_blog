@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Category\CreateController;
 use App\Http\Controllers\Admin\Category\IndexController as CategoryIndexController;
 use App\Http\Controllers\Admin\Main\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     });
 
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
-        Route::get('/', [CategoryIndexController::class, '__invoke']);
+        Route::get('/', [CategoryIndexController::class, '__invoke'])->name('admin.category.index');
+        Route::get('/create', [CreateController::class, '__invoke'])->name('admin.category.create');
     });
 });
 
