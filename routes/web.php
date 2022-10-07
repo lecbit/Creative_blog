@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Category\IndexController as CategoryIndexController;
 use App\Http\Controllers\Admin\Main\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,10 @@ Route::group(['namespace' => 'Main'], function () {
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', [IndexController::class, '__invoke']);
+    });
+
+    Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
+        Route::get('/', [CategoryIndexController::class, '__invoke']);
     });
 });
 
