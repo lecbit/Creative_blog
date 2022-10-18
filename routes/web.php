@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Category\EditController;
 use App\Http\Controllers\Admin\Category\IndexController as CategoryIndexController;
 use App\Http\Controllers\Admin\Category\ShowController;
 use App\Http\Controllers\Admin\Category\StoreController;
+use App\Http\Controllers\Admin\Category\UpdateController;
 use App\Http\Controllers\Admin\Main\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('/', [StoreController::class, '__invoke'])->name('admin.category.store');
         Route::get('/{category}', [ShowController::class, '__invoke'])->name('admin.category.show');
         Route::get('/{category}/edit', [EditController::class, '__invoke'])->name('admin.category.edit');
+        Route::patch('/{category}', [UpdateController::class, '__invoke'])->name('admin.category.update');
     });
 });
 
