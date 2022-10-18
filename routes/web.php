@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Category\CreateController;
+use App\Http\Controllers\Admin\Category\EditController;
 use App\Http\Controllers\Admin\Category\IndexController as CategoryIndexController;
 use App\Http\Controllers\Admin\Category\ShowController;
 use App\Http\Controllers\Admin\Category\StoreController;
@@ -32,6 +33,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/create', [CreateController::class, '__invoke'])->name('admin.category.create');
         Route::post('/', [StoreController::class, '__invoke'])->name('admin.category.store');
         Route::get('/{category}', [ShowController::class, '__invoke'])->name('admin.category.show');
+        Route::get('/{category}/edit', [EditController::class, '__invoke'])->name('admin.category.edit');
     });
 });
 
