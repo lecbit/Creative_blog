@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Название</th>
-                                        <th colspan="2">Действия</th>
+                                        <th colspan="3" class="text-center">Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,8 +48,17 @@
                                     <tr>
                                         <td>{{$category->id}}</td>
                                         <td>{{$category->title}}</td>
-                                        <td><a href="{{route('admin.category.show',$category->id)}}"><i class="fa-solid fa-eye"></i></a></td>
-                                        <td><a href="{{route('admin.category.edit',$category->id)}}" class="text-success"><i class="fa-solid fa-pencil"></i></a></td>
+                                        <td class="text-center"><a href="{{route('admin.category.show',$category->id)}}"><i class="fa-solid fa-eye"></i></a></td>
+                                        <td class="text-center"><a href="{{route('admin.category.edit',$category->id)}}" class="text-success"><i class="fa-solid fa-pencil"></i></a></td>
+                                        <td class="text-center">
+                                            <form action="{{route('admin.category.delete',$category->id)}}" method="POST" class="danger">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="border-0 bg-transparent text-danger">
+                                                    <i class="fa-solid fa-trash "></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
