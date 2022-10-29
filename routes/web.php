@@ -22,6 +22,13 @@ use App\Http\Controllers\Admin\Tag\IndexController as TagIndexController;
 use App\Http\Controllers\Admin\Tag\ShowController as TagShowController;
 use App\Http\Controllers\Admin\Tag\StoreController as TagStoreController;
 use App\Http\Controllers\Admin\Tag\UpdateController as TagUpdateController;
+use App\Http\Controllers\Admin\User\CreateController as UserCreateController;
+use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
+use App\Http\Controllers\Admin\User\EditController as UserEditController;
+use App\Http\Controllers\Admin\User\IndexController as UserIndexController;
+use App\Http\Controllers\Admin\User\ShowController as UserShowController;
+use App\Http\Controllers\Admin\User\StoreController as UserStoreController;
+use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,6 +79,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/{post}/edit', [PostEditController::class, '__invoke'])->name('admin.post.edit');
         Route::patch('/{post}', [PostUpdateController::class, '__invoke'])->name('admin.post.update');
         Route::delete('/{post}', [PostDeleteController::class, '__invoke'])->name('admin.post.delete');
+    });
+
+    Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
+        Route::get('/', [UserIndexController::class, '__invoke'])->name('admin.user.index');
+        Route::get('/create', [UserCreateController::class, '__invoke'])->name('admin.user.create');
+        Route::post('/', [UserStoreController::class, '__invoke'])->name('admin.user.store');
+        Route::get('/{user}', [UserShowController::class, '__invoke'])->name('admin.user.show');
+        Route::get('/{user}/edit', [UserEditController::class, '__invoke'])->name('admin.user.edit');
+        Route::patch('/{user}', [UserUpdateController::class, '__invoke'])->name('admin.user.update');
+        Route::delete('/{user}', [UserDeleteController::class, '__invoke'])->name('admin.user.delete');
     });
 });
 
