@@ -27,12 +27,18 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12">
-                    <form action="{{route('admin.user.update',$category->id)}}" method="POST" class="w-25">
+                    <form action="{{route('admin.user.update',$user->id)}}" method="POST" class="w-25">
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Название юзера" value="{{$category->name}}">
+                            <input type="text" class="form-control" name="name" placeholder="Название юзера" value="{{$user->name}}">
                             @error('name')
+                            <div class="text-danger">Это поле необходимо заполнить</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Введите эмейл" value="{{$user->email}}">
+                            @error('email')
                             <div class="text-danger">Это поле необходимо заполнить</div>
                             @enderror
                         </div>

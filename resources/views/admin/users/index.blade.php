@@ -48,10 +48,10 @@
                                     <tr>
                                         <td>{{$user->id}}</td>
                                         <td>{{$user->name}}</td>
-                                        <td class="text-center"><a href="{{route('admin.category.show',$user->id)}}"><i class="fa-solid fa-eye"></i></a></td>
-                                        <td class="text-center"><a href="{{route('admin.category.edit',$user->id)}}" class="text-success"><i class="fa-solid fa-pencil"></i></a></td>
+                                        <td class="text-center"><a href="{{route('admin.user.show',$user->id)}}"><i class="fa-solid fa-eye"></i></a></td>
+                                        <td class="text-center"><a href="{{route('admin.user.edit',$user->id)}}" class="text-success"><i class="fa-solid fa-pencil"></i></a></td>
                                         <td class="text-center">
-                                            <form action="{{route('admin.category.delete',$user->id)}}" method="POST" class="danger">
+                                            <form action="{{route('admin.user.delete',$user->id)}}" method="POST" class="danger">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="border-0 bg-transparent text-danger">
