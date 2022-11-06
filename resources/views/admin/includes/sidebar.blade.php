@@ -8,34 +8,42 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{route('admin.post.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
+                <a href="{{route('admin.main.index')}}" class="nav-link">
+                    <i class="fa-solid fas fa-house-chimney"></i>
                     <p>
-                        Пост
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('admin.category.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>
-                        Категория
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('admin.tag.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>
-                        Тег
+                        Главная
                     </p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{route('admin.user.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
+                    <i class="fa-solid fa-users"></i>
                     <p>
-                        Юзеры
+                        Пользователи
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.post.index')}}" class="nav-link">
+                    <i class="fa-solid fa-note-sticky"></i>
+                    <p>
+                        Посты
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.category.index')}}" class="nav-link">
+                    <i class="fa-solid fa-swatchbook"></i>
+                    <p>
+                        Категории
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.tag.index')}}" class="nav-link">
+                    <i class="fa-solid fa-tags"></i>
+                    <p>
+                        Тэги
                     </p>
                 </a>
             </li>

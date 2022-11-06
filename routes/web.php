@@ -48,7 +48,7 @@ Route::group(['namespace' => 'Main'], function () {
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin','verified']], function () {
     Route::group(['namespace' => 'Main'], function () {
-        Route::get('/', [IndexController::class, '__invoke']);
+        Route::get('/', [IndexController::class, '__invoke'])->name('admin.main.index');
     });
 
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
