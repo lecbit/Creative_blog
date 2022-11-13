@@ -29,6 +29,9 @@ use App\Http\Controllers\Admin\User\IndexController as UserIndexController;
 use App\Http\Controllers\Admin\User\ShowController as UserShowController;
 use App\Http\Controllers\Admin\User\StoreController as UserStoreController;
 use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
+use App\Http\Controllers\Personal\Comment\IndexController as CommentIndexController;
+use App\Http\Controllers\Personal\Liked\IndexController as LikedIndexController;
+use App\Http\Controllers\Personal\Main\IndexController as MainIndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +49,20 @@ Route::group(['namespace' => 'Main'], function () {
     Route::get('/', [IndexController::class, '__invoke']);
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin','verified']], function () {
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
+    Route::group(['namespace' => 'Main', 'prefix' => 'main'], function () {
+        Route::get('/', [MainIndexController::class, '__invoke'])->name('personal.main.index');
+    });
+    Route::group(['namespace' => 'Liked', 'prefix' => 'liked'], function () {
+        Route::get('/', [LikedIndexController::class, '__invoke'])->name('personal.liked.index');
+    });
+    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
+        Route::get('/', [CommentIndexController::class, '__invoke'])->name('personal.comment.index');
+    });
+});
+
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', [IndexController::class, '__invoke'])->name('admin.main.index');
     });
