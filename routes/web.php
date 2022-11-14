@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\User\ShowController as UserShowController;
 use App\Http\Controllers\Admin\User\StoreController as UserStoreController;
 use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 use App\Http\Controllers\Personal\Comment\IndexController as CommentIndexController;
+use App\Http\Controllers\Personal\Liked\DeleteController as LikedDeleteController;
 use App\Http\Controllers\Personal\Liked\IndexController as LikedIndexController;
 use App\Http\Controllers\Personal\Main\IndexController as MainIndexController;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,9 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
     });
     Route::group(['namespace' => 'Liked', 'prefix' => 'liked'], function () {
         Route::get('/', [LikedIndexController::class, '__invoke'])->name('personal.liked.index');
+    });
+    Route::group(['namespace' => 'Liked', 'prefix' => 'liked'], function () {
+        Route::delete('/{post}', [LikedDeleteController::class, '__invoke'])->name('personal.liked.delete');
     });
     Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
         Route::get('/', [CommentIndexController::class, '__invoke'])->name('personal.comment.index');
