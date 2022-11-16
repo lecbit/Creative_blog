@@ -37,6 +37,8 @@ use App\Http\Controllers\Personal\Comment\UpdateController as CommentUpdateContr
 use App\Http\Controllers\Personal\Liked\DeleteController as LikedDeleteController;
 use App\Http\Controllers\Personal\Liked\IndexController as LikedIndexController;
 use App\Http\Controllers\Personal\Main\IndexController as MainIndexController;
+use App\Http\Controllers\Post\IndexController as ControllersPostIndexController;
+use App\Http\Controllers\Post\ShowController as ControllersPostShowController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +54,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', [IndexController::class, '__invoke'])->name('main.index');
+});
+
+Route::group(['namespace' => 'Main', 'prefix' => 'posts'], function () {
+    Route::get('/', [ControllersPostIndexController::class, '__invoke'])->name('post.index');
+    Route::get('/{post}', [ControllersPostShowController::class, '__invoke'])->name('post.show');
 });
 
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
