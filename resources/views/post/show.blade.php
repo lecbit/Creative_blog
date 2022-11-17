@@ -18,6 +18,27 @@
         </section>
         <div class="row">
             <div class="col-lg-9 mx-auto">
+                <section class="pb-5">
+                    @csrf
+                    <form action="{{route('post.like.store', $post->id)}}" method="POST">
+                        @auth()
+                        <button type="submit" class="border-0 bg-transparent">
+                            @if(auth()->user()->getPostsByLikes->contains($post->id))
+                            <i class="fa-solid fa-heart"></i>
+                            @else
+                            <i class="fa-regular fa-heart"></i>
+                            @endif
+                        </button>
+                    </form>
+                    @endauth
+                    @guest()
+                    <div>
+                        <span>{{$post->users_of_likes_count}}</span>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    @endguest
+                </section>
+                @if($relatedPosts->count() > 0)
                 <section class="related-posts">
                     <h2 class="section-title mb-4" data-aos="fade-up">Схожие посты</h2>
                     <div class="row">
@@ -32,10 +53,11 @@
                         @endforeach
                     </div>
                 </section>
+                @endif
                 <section class="comment-list mb-5">
                     <h2 class="section-title mb-5" data-aos="fade-up">Комментарии ({{$post->getComments->count()}})</h2>
                     @foreach($post->getComments as $comment)
-                    <div class="comment-text mb-3">
+                    <div class="comment-text mb-3" data-aos="fade-up">
                         <span class="username">
                             <div>{{$comment->getUser->name}}</div>
                             <span class="text-muted float-right">{{$comment->DateAsCarbon->diffForHumans()}} </span>
