@@ -29,6 +29,8 @@ use App\Http\Controllers\Admin\User\IndexController as UserIndexController;
 use App\Http\Controllers\Admin\User\ShowController as UserShowController;
 use App\Http\Controllers\Admin\User\StoreController as UserStoreController;
 use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
+use App\Http\Controllers\Category\IndexController as ControllersCategoryIndexController;
+use App\Http\Controllers\Category\Post\IndexController as CategoryPostIndexController;
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Personal\Comment\DeleteController as CommentDeleteController;
 use App\Http\Controllers\Personal\Comment\EditController as CommentEditController;
@@ -39,6 +41,7 @@ use App\Http\Controllers\Personal\Liked\IndexController as LikedIndexController;
 use App\Http\Controllers\Personal\Main\IndexController as MainIndexController;
 use App\Http\Controllers\Post\Comment\StoreController as CommentStoreController;
 use App\Http\Controllers\Post\IndexController as ControllersPostIndexController;
+use App\Http\Controllers\Post\Like\StoreController as LikeStoreController;
 use App\Http\Controllers\Post\ShowController as ControllersPostShowController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,8 +64,20 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
     Route::get('/', [ControllersPostIndexController::class, '__invoke'])->name('post.index');
     Route::get('/{post}', [ControllersPostShowController::class, '__invoke'])->name('post.show');
 
-    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function(){
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
         Route::post('/', [CommentStoreController::class, '__invoke'])->name('post.comment.store');
+    });
+
+    Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function () {
+        Route::post('/', [LikeStoreController::class, '__invoke'])->name('post.like.store');
+    });
+});
+
+Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
+    Route::get('/', [ControllersCategoryIndexController::class, '__invoke'])->name('category.index');
+
+    Route::group(['namespace' => 'Post', 'prefix' => '{category}/posts'], function () {
+        Route::get('/', [CategoryPostIndexController::class, '__invoke'])->name('category.post.index');
     });
 });
 
