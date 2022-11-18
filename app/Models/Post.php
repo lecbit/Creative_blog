@@ -14,6 +14,7 @@ class Post extends Model
     protected $table = 'posts';
     protected $guarded = false;
     protected $withCount = 'usersOfLikes';
+    protected $with = 'getCategory';
 
     public function tags()
     {
